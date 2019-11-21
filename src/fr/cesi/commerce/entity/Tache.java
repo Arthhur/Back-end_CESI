@@ -23,8 +23,8 @@ public class Tache {
     @JoinColumn(name = "id_reunion", referencedColumnName = "id")
 	private Reunion reunion ;
 	
-	private String libelle ;
-	private Date echeance ;
+	private String libelle = "" ;
+	private Date echeance = new Date() ;
 	
 
 	public Tache() {	
@@ -51,8 +51,23 @@ public class Tache {
 	}
 
 
+<<<<<<< HEAD
 	public void setEcheance(Date echeance) {
 		this.echeance = echeance;
+=======
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+
+	public Date getEcheance() {
+		return echeance;
+>>>>>>> branch 'master' of git@github.com:Arthhur/Back-end_CESI.git
 	}
 
 
@@ -64,6 +79,9 @@ public class Tache {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+	
+	
+
 
 
 
