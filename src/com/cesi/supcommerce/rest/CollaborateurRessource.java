@@ -26,7 +26,7 @@ public class CollaborateurRessource {
 	}
 	
 	@GET 
-	@Path("/search/{id}")
+	@Path("/collaborateur/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collaborateur getCollaborateurInJson(@PathParam("id") Long comId) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;

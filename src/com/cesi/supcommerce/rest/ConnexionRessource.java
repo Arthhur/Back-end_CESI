@@ -20,8 +20,12 @@ public class ConnexionRessource {
 		
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean getConnexion(Collaborateur c) {
+	public boolean getConnexion(String mail, String pwd) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
+		if (colDao.getCollaborateur(mail,pwd)){
+			return true;
+		}
+		else return false;
 		
 	}
 	
