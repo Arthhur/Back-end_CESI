@@ -80,7 +80,7 @@ public class JpaCollaborateurDao implements CollaborateurDao{
 		return (Collaborateur)query.getSingleResult() ;
 	}
 	
-	public List<String> getTest(String mail, String pwd){
+	public String getTest(String mail, String pwd){
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		Query query = em.createNativeQuery("SELECT CONCAT(nom, ' ', prenom), mail FROM Collaborateur C WHERE C.mail = ?1 and C.pwd = ?2 ");
@@ -89,7 +89,7 @@ public class JpaCollaborateurDao implements CollaborateurDao{
 		List<String> results = query.getResultList();
 	    if (results.isEmpty()) 
 	    	return null;
-		return results ;
+		return results.get(0) ;
 	}
 
 }

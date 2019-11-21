@@ -30,7 +30,7 @@ public class CollaborateurRessource {
 	@GET 
 	@Path("/test")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<String> getInJson(String incomingData) {
+	public String getInJson(String incomingData) {
 		String mail = "" ;
 		String password = "" ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
