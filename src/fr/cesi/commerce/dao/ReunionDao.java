@@ -11,4 +11,5 @@ public interface ReunionDao {
 	public List<Reunion> getAllReunions() ;
 	public Reunion findReunionById(Long id) ;
 	public void removeReunion(Reunion r) ;
+	public List<Reunion> findReunionByProjet(Long pId) ;
 }
