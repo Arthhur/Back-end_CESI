@@ -33,6 +33,14 @@ public class ReunionRessource {
 		return reunionDao.findReunionById(comId) ;
 	}
 	
+	@GET
+	@Path("/{idProjet}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Reunion> getReunionByProjetInJson(@PathParam("idProjet") Long pId) {
+		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
+		return reunionDao.findReunionByProjet(pId);
+	}
+	
 	@GET 
 	@Path("/reunion/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

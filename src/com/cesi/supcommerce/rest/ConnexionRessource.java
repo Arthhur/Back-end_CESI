@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONObject;
+
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
 import fr.cesi.commerce.entity.Collaborateur;
@@ -19,14 +21,34 @@ import fr.cesi.commerce.entity.Collaborateur;
 public class ConnexionRessource {
 		
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean getConnexion(String mail, String pwd) {
+	public Collaborateur getConnexion(String incomingData) {
+		String mail = "" ;
+		String password = "" ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
-		if (!colDao.getCollaborateur(mail, pwd).equals([])){
-			return true;
+		try {
+            JSONObject obj = new JSONObject(incomingData);
+            mail = obj.getString("mail");
+            password = obj.getString("password");
+        } catch (Exception e) {
+        	System.out.println(e) ;
+        	return null ;
+        }
+<<<<<<< HEAD
+		if (colDao.getCollaborateur(mail, password) == null){
+			return null ;
 		}
-		else return false;
-		
+		else {
+			return colDao.getCollaborateur(mail, password) ;
+=======
+		System.out.println(colDao.getCollaborateur(mail, password)) ;
+		return false ;
+		/*if (!colDao.getCollaborateur(mail, password).equals(null)){
+
+			return true;
+>>>>>>> 5a712e7866ad573a80672340a98bdce8931d1a9f
+		}
 	}
 	
 }
