@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaTacheDao;
 import fr.cesi.commerce.entity.Tache;
-import fr.cesi.commerce.entity.Service;
 
 @Path("/taches") 
 public class TacheRessource {

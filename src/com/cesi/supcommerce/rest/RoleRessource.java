@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaRoleDao;
 import fr.cesi.commerce.entity.Role;
-import fr.cesi.commerce.entity.Service;
 
 @Path("/roles") 
 public class RoleRessource {
