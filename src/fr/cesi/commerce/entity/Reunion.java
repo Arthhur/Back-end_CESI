@@ -36,6 +36,9 @@ public class Reunion {
 			  joinColumns = @JoinColumn(name = "reunion_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "collaborateur_id"))
 	private List<Collaborateur> participant ;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_projet", referencedColumnName = "id")
+	private Projet projet ;
 
 	public Reunion() {	
 	}
@@ -108,6 +111,16 @@ public class Reunion {
 
 	public void setCreateur(Collaborateur createur) {
 		this.createur = createur;
+	}
+
+
+	public Projet getProjet() {
+		return projet;
+	}
+
+
+	public void setProjet(Projet projet) {
+		this.projet = projet;
 	}
 
 
