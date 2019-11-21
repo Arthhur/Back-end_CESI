@@ -14,6 +14,7 @@ public class Projet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
 	private String libelle ;
+	private String test ;
 	
 	public Projet() {
 		// TODO Auto-generated constructor stub
