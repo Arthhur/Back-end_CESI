@@ -77,7 +77,10 @@ public class JpaCollaborateurDao implements CollaborateurDao{
 		Query query = em.createQuery("FROM Collaborateur C WHERE C.mail = ?1 and C.pwd = ?2");
 		query.setParameter(1, mail) ;
 		query.setParameter(2, pwd) ;
-		return (Collaborateur)query.getSingleResult() ;
+		List<Collaborateur> results = query.getResultList();
+	    if (results.isEmpty()) 
+	    	return null;
+		return results.get(0) ;
 	}
 
 }
