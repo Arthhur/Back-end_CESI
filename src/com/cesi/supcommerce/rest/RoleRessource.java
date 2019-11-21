@@ -26,7 +26,7 @@ public class RoleRessource {
 	}
 	
 	@GET 
-	@Path("/search/{id}")
+	@Path("/role/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Role getRoleInJson(@PathParam("id") Long roleId) {
 		JpaRoleDao roleDao = (JpaRoleDao)DaoFactory.getRoleDao() ;

@@ -26,7 +26,7 @@ public class TacheRessource {
 	}
 	
 	@GET 
-	@Path("/search/{id}")
+	@Path("/tache/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Tache getTacheInJson(@PathParam("id") Long tacheId) {
 		JpaTacheDao tacheDao = (JpaTacheDao)DaoFactory.getTacheDao() ;

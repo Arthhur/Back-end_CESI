@@ -15,6 +15,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
+import fr.cesi.commerce.entity.Collaborateur;
 
 @Path("/connexion") 
 public class ConnexionRessource {
@@ -22,7 +23,7 @@ public class ConnexionRessource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean getConnexion(String incomingData) {
+	public Collaborateur getConnexion(String incomingData) {
 		String mail = "" ;
 		String password = "" ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
@@ -32,17 +33,22 @@ public class ConnexionRessource {
             password = obj.getString("password");
         } catch (Exception e) {
         	System.out.println(e) ;
-        	return false ;
+        	return null ;
         }
+<<<<<<< HEAD
+		if (colDao.getCollaborateur(mail, password) == null){
+			return null ;
+		}
+		else {
+			return colDao.getCollaborateur(mail, password) ;
+=======
 		System.out.println(colDao.getCollaborateur(mail, password)) ;
 		return false ;
 		/*if (!colDao.getCollaborateur(mail, password).equals(null)){
 
 			return true;
+>>>>>>> 5a712e7866ad573a80672340a98bdce8931d1a9f
 		}
-		else 
-			return false;*/
-		
 	}
 	
 }
