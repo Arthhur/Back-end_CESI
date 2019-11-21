@@ -35,19 +35,11 @@ public class ConnexionRessource {
         	System.out.println(e) ;
         	return null ;
         }
-<<<<<<< HEAD
 		if (colDao.getCollaborateur(mail, password) == null){
 			return null ;
 		}
 		else {
 			return colDao.getCollaborateur(mail, password) ;
-=======
-		System.out.println(colDao.getCollaborateur(mail, password)) ;
-		return false ;
-		/*if (!colDao.getCollaborateur(mail, password).equals(null)){
-
-			return true;
->>>>>>> 5a712e7866ad573a80672340a98bdce8931d1a9f
 		}
 	}
 	
