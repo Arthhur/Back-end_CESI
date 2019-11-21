@@ -22,7 +22,7 @@ public class Tache {
 	private Reunion reunion ;
 	
 	private String libelle = "" ;
-	private DateTime echeance = "" ;
+	private Date echeance = "" ;
 	
 
 	public Tache() {	
@@ -54,7 +54,7 @@ public class Tache {
 	}
 
 
-	public void setEcheance(DateTime echeance) {
+	public void setEcheance(Date echeance) {
 		this.echeance = echeance;
 	}
 
