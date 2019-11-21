@@ -7,19 +7,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import fr.cesi.commerce.dao.CommentaireDao;
-import fr.cesi.commerce.entity.Commentaire;
-import fr.cesi.commerce.entity.Commentaire;
-import fr.cesi.commerce.entity.Service;
+import fr.cesi.commerce.dao.CollaborateurDao;
+import fr.cesi.commerce.entity.Collaborateur;
 
-public class JpaCommentaireDao implements CommentaireDao{
+public class JpaCollaborateurDao implements CollaborateurDao{
 	private EntityManagerFactory emf ;
 	
-	public JpaCommentaireDao(EntityManagerFactory emf) {
+	public JpaCollaborateurDao(EntityManagerFactory emf) {
 		this.emf = emf ;
 	}
 	
-	public Commentaire addCommentaire(Commentaire c) {
+	public Collaborateur addCollaborateur(Collaborateur c) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();	
 		try {
@@ -33,13 +31,13 @@ public class JpaCommentaireDao implements CommentaireDao{
 		}
 		return c ;
 	}
-	public void editCommentaire(Commentaire c) {
+	public void editCollaborateur(Collaborateur c) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();	
-		Commentaire com ;
+		Collaborateur col = new Collaborateur();
 		try {
 			t.begin();
-			com = em.merge(c); 
+			col = em.merge(c); 
 			t.commit();
 		} finally {
 			if (t.isActive()) 
@@ -47,20 +45,20 @@ public class JpaCommentaireDao implements CommentaireDao{
 			em.close();
 		}
 	}
-	public List<Commentaire> getAllCommentaires() {
+	public List<Collaborateur> getAllCollaborateurs() {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();
-		Query query = em.createQuery("FROM Commentaire C ");
+		Query query = em.createQuery("FROM Collaborateur C ");
 		return query.getResultList();
 	}
-	public Commentaire findCommentaireById(Long id) {
+	public Collaborateur findCollaborateurById(Long id) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();
-		Query query = em.createQuery("FROM Commentaire C WHERE C.id = ?1");
+		Query query = em.createQuery("FROM Collaborateur C WHERE C.id = ?1");
 		query.setParameter(1, id) ;
-		return (Commentaire)query.getSingleResult() ;
+		return (Collaborateur)query.getSingleResult() ;
 	}
-	public void removeCommentaire(Commentaire c) {
+	public void removeCollaborateur(Collaborateur c) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();	
 		try {

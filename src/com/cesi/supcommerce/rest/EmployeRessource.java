@@ -19,7 +19,7 @@ import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaEmployeDao;
 import fr.cesi.commerce.dao.jpa.JpaRoleDao;
 import fr.cesi.commerce.dao.jpa.JpaServiceDao;
-import fr.cesi.commerce.entity.Employe;
+import fr.cesi.commerce.entity.role;
 import fr.cesi.commerce.entity.Role;
 import fr.cesi.commerce.entity.Service;
 
@@ -28,7 +28,7 @@ public class EmployeRessource {
 		
 	@GET 
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Employe> getAllEmployesInJson() {
+	public List<role> getAllEmployesInJson() {
 		JpaEmployeDao empDao = (JpaEmployeDao)DaoFactory.getEmployeDao() ;
 		return empDao.getAllEmployes() ;
 	}
@@ -36,7 +36,7 @@ public class EmployeRessource {
 	@GET 
 	@Path("/search/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Employe getEmployeInJson(@PathParam("id") Long empId) {
+	public role getEmployeInJson(@PathParam("id") Long empId) {
 		JpaEmployeDao empDao = (JpaEmployeDao)DaoFactory.getEmployeDao() ;
 		return empDao.findEmployeById(empId) ;
 	}
@@ -44,16 +44,16 @@ public class EmployeRessource {
 	@GET 
 	@Path("/delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Employe removeEmploye(@PathParam("id") Long empId) {
+	public role removeEmploye(@PathParam("id") Long empId) {
 		JpaEmployeDao empDao = (JpaEmployeDao)DaoFactory.getEmployeDao() ;
-		Employe e = empDao.findEmployeById(empId) ;
+		role e = empDao.findEmployeById(empId) ;
 		empDao.removeEmploye(e);
 		return e ;
 	}
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addEmploye(Employe emp) throws JSONException {
+	public void addEmploye(role emp) throws JSONException {
 		/*JpaRoleDao roleDao = (JpaRoleDao)DaoFactory.getRoleDao() ;
 		JpaServiceDao serviceDao = (JpaServiceDao)DaoFactory.getServiceDao() ;
 		JSONObject jsonObj = new JSONObject(emp) ;
@@ -83,7 +83,7 @@ public class EmployeRessource {
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void editEmploye(@PathParam("id") Long empId, Employe e) {
+	public void editEmploye(@PathParam("id") Long empId, role e) {
 		JpaEmployeDao empDao = (JpaEmployeDao)DaoFactory.getEmployeDao() ;
 		empDao.editEmploye(e);
 	}

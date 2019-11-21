@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
-import fr.cesi.commerce.dao.jpa.JpaCommentaireDao;
-import fr.cesi.commerce.entity.Commentaire;
+import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
+import fr.cesi.commerce.entity.Collaborateur;
 import fr.cesi.commerce.entity.Service;
 
 @Path("/commentaires") 
@@ -21,41 +21,41 @@ public class CommentaireRessource {
 		
 	@GET 
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Commentaire> getAllCommentairesInJson() {
-		JpaCommentaireDao commDao = (JpaCommentaireDao)DaoFactory.getCommentaireDao() ;
+	public List<Collaborateur> getAllCommentairesInJson() {
+		JpaCollaborateurDao commDao = (JpaCollaborateurDao)DaoFactory.getCommentaireDao() ;
 		return commDao.getAllCommentaires() ;
 	}
 	
 	@GET 
 	@Path("/search/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Commentaire getCommentaireInJson(@PathParam("id") Long comId) {
-		JpaCommentaireDao commDao = (JpaCommentaireDao)DaoFactory.getCommentaireDao() ;
+	public Collaborateur getCommentaireInJson(@PathParam("id") Long comId) {
+		JpaCollaborateurDao commDao = (JpaCollaborateurDao)DaoFactory.getCommentaireDao() ;
 		return commDao.findCommentaireById(comId) ;
 	}
 	
 	@GET 
 	@Path("/delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Commentaire removeCommentaire(@PathParam("id") Long comId) {
-		JpaCommentaireDao commDao = (JpaCommentaireDao)DaoFactory.getCommentaireDao() ;
-		Commentaire c = commDao.findCommentaireById(comId) ;
+	public Collaborateur removeCommentaire(@PathParam("id") Long comId) {
+		JpaCollaborateurDao commDao = (JpaCollaborateurDao)DaoFactory.getCommentaireDao() ;
+		Collaborateur c = commDao.findCommentaireById(comId) ;
 		commDao.removeCommentaire(c);
 		return c ;
 	}
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addCommentaire(Commentaire c) {
-		JpaCommentaireDao commDao = (JpaCommentaireDao)DaoFactory.getCommentaireDao() ;
+	public void addCommentaire(Collaborateur c) {
+		JpaCollaborateurDao commDao = (JpaCollaborateurDao)DaoFactory.getCommentaireDao() ;
 		commDao.addCommentaire(c) ;
 	}
 	
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void editCommentaire(@PathParam("id") Long comId, Commentaire c) {
-		JpaCommentaireDao commDao = (JpaCommentaireDao)DaoFactory.getCommentaireDao() ;
+	public void editCommentaire(@PathParam("id") Long comId, Collaborateur c) {
+		JpaCollaborateurDao commDao = (JpaCollaborateurDao)DaoFactory.getCommentaireDao() ;
 		commDao.editCommentaire(c);
 	}
 	

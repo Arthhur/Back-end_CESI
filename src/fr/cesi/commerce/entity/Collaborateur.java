@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="commentaires")
-public class Commentaire {
+public class Collaborateur {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
@@ -25,7 +25,7 @@ public class Commentaire {
 	private String description = "" ;
 	
 
-	public Commentaire() {	
+	public Collaborateur() {	
 	}
 
 

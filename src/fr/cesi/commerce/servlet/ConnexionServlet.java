@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import com.sun.jersey.api.client.Client;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
-import fr.cesi.commerce.entity.Employe;
+import fr.cesi.commerce.entity.role;
 
 /**
  * Servlet implementation class InscriptionServlet

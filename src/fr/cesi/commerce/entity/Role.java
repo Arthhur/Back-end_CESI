@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="employes")
-public class Employe {
+@Table(name="role")
+public class Role {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
@@ -34,7 +34,7 @@ public class Employe {
     private String email = "" ;
     private String pass = "" ;
 	
-	public Employe() {	
+	public role() {	
 	}
 
 	public Long getId() {

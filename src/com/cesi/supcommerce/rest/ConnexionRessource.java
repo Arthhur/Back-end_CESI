@@ -12,10 +12,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
-import fr.cesi.commerce.dao.jpa.JpaCommentaireDao;
+import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
 import fr.cesi.commerce.dao.jpa.JpaEmployeDao;
-import fr.cesi.commerce.entity.Commentaire;
-import fr.cesi.commerce.entity.Employe;
+import fr.cesi.commerce.entity.Collaborateur;
+import fr.cesi.commerce.entity.role;
 import fr.cesi.commerce.entity.Service;
 
 @Path("/connexion") 
@@ -23,7 +23,7 @@ public class ConnexionRessource {
 		
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Employe getConnexion(Employe e) {
+	public role getConnexion(role e) {
 		JpaEmployeDao empDao = (JpaEmployeDao)DaoFactory.getEmployeDao() ;
 		return empDao.connexionEmp(e.getNom(), e.getPass()) ;
 	}

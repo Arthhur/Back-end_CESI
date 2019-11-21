@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
-import fr.cesi.commerce.dao.jpa.JpaCommentaireDao;
+import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
 
 /**
  * Servlet implementation class AddCategoryServlet
