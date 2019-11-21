@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,14 +17,13 @@ public class Collaborateur {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_role", referencedColumnName = "id")
-	private Role role ;
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employe_id", referencedColumnName = "id")
+	private Projet projet ;
 	
-	private String nom = "" ;
-	private String prenom = "" ;
-	private String mail = "" ;
-	private String pwd = "" ;
+	private String titre = "" ;
+	private String description = "" ;
+	
 
 	public Collaborateur() {	
 	}
@@ -41,51 +39,33 @@ public class Collaborateur {
 	}
 
 
-	public Role retRole() {
-		return role;
+	public Projet getProjet() {
+		return projet;
 	}
 
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setProjet(Projet projet) {
+		this.projet = projet;
 	}
 
 
-	public String getNom() {
-		return nom;
+	public String getTitre() {
+		return titre;
 	}
 
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 
 
-	public String getPrenom() {
-		return prenom;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	public String getPwd() {
-		return pwd;
-	}
-
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	
