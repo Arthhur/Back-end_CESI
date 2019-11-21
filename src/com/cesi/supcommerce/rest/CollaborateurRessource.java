@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONObject;
+
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
 import fr.cesi.commerce.entity.Collaborateur;
@@ -23,6 +25,24 @@ public class CollaborateurRessource {
 	public List<Collaborateur> getAllCollaborateursInJson() {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		return colDao.getAllCollaborateurs() ;
+	}
+	
+	@GET 
+	@Path("/test")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> getInJson(String incomingData) {
+		String mail = "" ;
+		String password = "" ;
+		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
+		try {
+            JSONObject obj = new JSONObject(incomingData);
+            mail = obj.getString("mail");
+            password = obj.getString("password");
+        } catch (Exception e) {
+        	System.out.println(e) ;
+        	return null ;
+        }
+		return colDao.getTest(mail, password) ;
 	}
 	
 	@GET 
