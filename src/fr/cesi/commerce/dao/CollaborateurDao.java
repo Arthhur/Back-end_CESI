@@ -11,4 +11,5 @@ public interface CollaborateurDao {
 	public List<Collaborateur> getAllCollaborateurs() ;
 	public Collaborateur findCollaborateurById(Long id) ;
 	public void removeCollaborateur(Collaborateur c) ;
+	public Collaborateur getCollaborateur(String mail, String pwd) ;
 }
