@@ -19,6 +19,7 @@ public class Collaborateur {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
 	
+
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
 	private Role role ;
