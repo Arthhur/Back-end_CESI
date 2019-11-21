@@ -1,5 +1,7 @@
 package fr.cesi.commerce.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,11 +20,11 @@ public class Tache {
 	private Long id  ;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_tache", referencedColumnName = "id_tache")
+    @JoinColumn(name = "id_reunion", referencedColumnName = "id")
 	private Reunion reunion ;
 	
-	private String libelle = "" ;
-	private Date echeance = "" ;
+	private String libelle ;
+	private Date echeance ;
 	
 
 	public Tache() {	
@@ -39,7 +41,7 @@ public class Tache {
 	}
 
 
-	public Projet getReunion() {
+	public Reunion getReunion() {
 		return reunion;
 	}
 
@@ -49,13 +51,18 @@ public class Tache {
 	}
 
 
-	public String getEcheance() {
-		return echeance;
+	public void setEcheance(Date echeance) {
+		this.echeance = echeance;
 	}
 
 
-	public void setEcheance(Date echeance) {
-		this.echeance = echeance;
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 
