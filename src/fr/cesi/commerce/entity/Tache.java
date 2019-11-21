@@ -50,24 +50,13 @@ public class Tache {
 		this.reunion = reunion;
 	}
 
-
-<<<<<<< HEAD
 	public void setEcheance(Date echeance) {
 		this.echeance = echeance;
-=======
-	public String getLibelle() {
-		return libelle;
-	}
-
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
 	}
 
 
 	public Date getEcheance() {
 		return echeance;
->>>>>>> branch 'master' of git@github.com:Arthhur/Back-end_CESI.git
 	}
 
 
