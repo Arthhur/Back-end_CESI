@@ -42,7 +42,7 @@ public class ReunionRessource {
 	}
 	
 	@GET 
-	@Path("/reunion/{id}")
+	@Path("/delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Reunion removeReunion(@PathParam("id") Long comId) {
 		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
