@@ -21,12 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaCommentaireDao;
-import fr.cesi.commerce.dao.jpa.JpaProjetDao;
-import fr.cesi.commerce.dao.jpa.JpaRoleDao;
-import fr.cesi.commerce.dao.jpa.JpaServiceDao;
-import fr.cesi.commerce.entity.Projet;
-import fr.cesi.commerce.entity.Role;
-import fr.cesi.commerce.entity.Service;
 
 /**
  * Servlet implementation class AddCategoryServlet
@@ -48,7 +42,7 @@ public class AddProjetServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String description = request.getParameter("description") ;
+		/*String description = request.getParameter("description") ;
 		String titre = request.getParameter("titre") ;
 		
 		String date = request.getParameter("date") ;
@@ -66,7 +60,7 @@ public class AddProjetServlet extends HttpServlet {
 		projetDao.addProjet(projet) ;
 		ServletContext context = getServletContext();
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/listProjet.jsp");
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);*/
 	}
 
 	/**

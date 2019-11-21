@@ -14,7 +14,7 @@ public class PersistenceManager {
 	public static EntityManagerFactory
 		getEntityManagerFactory(){
 		if(emf == null){
-			emf = Persistence.createEntityManagerFactory("bibliotheque");
+			emf = Persistence.createEntityManagerFactory("gestion");
 		}
 		return emf;
 	}

@@ -2,7 +2,7 @@
 <persistence
 xmlns="http://java.sun.com/xml/ns/persistence"
 version="2.0">
-    <persistence-unit name="bibliotheque"
+    <persistence-unit name="gestion"
     transaction-type="RESOURCE_LOCAL">
         <provider>
             org.hibernate.ejb.HibernatePersistence
@@ -19,7 +19,7 @@ version="2.0">
             value="root" />
         <property
             name="javax.persistence.jdbc.url"
-            value="jdbc:mysql://localhost:3306/java" />
+            value="jdbc:mysql://localhost:3306/systemeGestion" />
         <property 
             name = "hibernate.dialect"
              value = "org.hibernate.dialect.MySQL5Dialect" />

@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import com.sun.jersey.api.client.Client;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
-import fr.cesi.commerce.dao.jpa.JpaEmployeDao;
 import fr.cesi.commerce.entity.Employe;
 
 /**
@@ -42,7 +41,7 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpServletRequest httpRequest = (HttpServletRequest) request ;
+		/*HttpServletRequest httpRequest = (HttpServletRequest) request ;
 		HttpSession session = request.getSession();
 		String user = request.getParameter("nom") ;
 		String pass = request.getParameter("pass") ;
@@ -58,7 +57,7 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute("user", user);
 			HttpServletResponse res = (HttpServletResponse) response;	
 			res.sendRedirect( httpRequest.getContextPath() + "/index.jsp" );
-		}
+		}*/
 		
 	}
 
