@@ -42,25 +42,7 @@ public class AddProjetServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*String description = request.getParameter("description") ;
-		String titre = request.getParameter("titre") ;
 		
-		String date = request.getParameter("date") ;
-		
-		Long id = Long.parseLong(request.getParameter("service")) ;
-		Projet projet = new Projet() ;
-		JpaServiceDao serviceDao= (JpaServiceDao)DaoFactory.getServiceDao() ;
-		Service service = serviceDao.findServiceById(id) ;
-		projet.setDeadline(date);
-		projet.setDescription(description);
-		projet.setTitre(titre);
-		projet.setService(service);
-		
-		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
-		projetDao.addProjet(projet) ;
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/listProjet.jsp");
-		dispatcher.forward(request, response);*/
 	}
 
 	/**

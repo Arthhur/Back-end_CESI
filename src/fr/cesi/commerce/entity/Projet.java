@@ -38,5 +38,4 @@ public class Projet {
 		this.libelle = libelle;
 	}
 
-
 }
