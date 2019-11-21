@@ -26,7 +26,7 @@ public class ProjetRessource {
 	}
 	
 	@GET 
-	@Path("/search/{id}")
+	@Path("/projet/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Projet getProjetInJson(@PathParam("id") Long projetId) {
 		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
