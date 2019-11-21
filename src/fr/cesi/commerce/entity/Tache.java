@@ -20,7 +20,7 @@ public class Tache {
 	private Long id  ;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_tache", referencedColumnName = "id_tache")
+    @JoinColumn(name = "id_reunion", referencedColumnName = "id")
 	private Reunion reunion ;
 	
 	private String libelle = "" ;
@@ -50,14 +50,8 @@ public class Tache {
 		this.reunion = reunion;
 	}
 
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setEcheance(Date echeance) {
+		this.echeance = echeance;
 	}
 
 
@@ -66,8 +60,13 @@ public class Tache {
 	}
 
 
-	public void setEcheance(Date echeance) {
-		this.echeance = echeance;
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 	
 	

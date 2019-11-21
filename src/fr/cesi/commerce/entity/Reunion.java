@@ -27,9 +27,6 @@ public class Reunion {
 	private String lieu ;
 	private String objectif ;
 	private String compteRendu ;
-	@OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "projet_id", referencedColumnName = "id")
-	private Projet projet ;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_createur", referencedColumnName = "id")
 	private Collaborateur createur ;
