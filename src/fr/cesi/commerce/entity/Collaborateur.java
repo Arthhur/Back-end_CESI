@@ -21,6 +21,9 @@ public class Collaborateur {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
 	private Role role ;
+
+	
+	
 	
 	private String nom = "" ;
 	private String prenom = "" ;
