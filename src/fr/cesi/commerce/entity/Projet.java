@@ -17,9 +17,6 @@ public class Projet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
 	private String libelle ;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_reunion", referencedColumnName = "id")
-	private Reunion reunion ;
 	
 	public Projet() {
 		// TODO Auto-generated constructor stub
