@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="commentaires")
+@Table(name="collaborteur")
 public class Collaborateur {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
