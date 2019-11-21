@@ -26,6 +26,7 @@ public class ConnexionRessource {
 		String mail = "" ;
 		String password = "" ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
+<<<<<<< HEAD
 		try {
             JSONObject obj = new JSONObject(incomingData);
             mail = obj.getString("mail");
@@ -37,6 +38,9 @@ public class ConnexionRessource {
 		System.out.println(colDao.getCollaborateur(mail, password)) ;
 		return false ;
 		/*if (!colDao.getCollaborateur(mail, password).equals(null)){
+=======
+		if (!colDao.getCollaborateur(mail, pwd).equals([])){
+>>>>>>> 80697a8f8e3392675ade7c6abf768edffd4db359
 			return true;
 		}
 		else 
