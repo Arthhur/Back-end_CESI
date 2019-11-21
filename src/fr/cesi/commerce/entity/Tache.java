@@ -18,14 +18,14 @@ public class Tache {
 	private Long id  ;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employe_id", referencedColumnName = "id")
-	private Projet projet ;
+    @JoinColumn(name = "id_tache", referencedColumnName = "id_tache")
+	private Reunion reunion ;
 	
-	private String titre = "" ;
-	private String description = "" ;
+	private String libelle = "" ;
+	private DateTime echeance = "" ;
 	
 
-	public Collaborateur() {	
+	public Tache() {	
 	}
 
 
@@ -39,34 +39,26 @@ public class Tache {
 	}
 
 
-	public Projet getProjet() {
-		return projet;
+	public Projet getReunion() {
+		return reunion;
 	}
 
 
-	public void setProjet(Projet projet) {
-		this.projet = projet;
+	public void setReunion(Reunion reunion) {
+		this.reunion = reunion;
 	}
 
 
-	public String getTitre() {
-		return titre;
+	public String getEcheance() {
+		return echeance;
 	}
 
 
-	public void setTitre(String titre) {
-		this.titre = titre;
+	public void setEcheance(DateTime echeance) {
+		this.echeance = echeance;
 	}
 
 
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	
 }
