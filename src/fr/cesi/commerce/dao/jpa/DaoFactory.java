@@ -1,6 +1,7 @@
 package fr.cesi.commerce.dao.jpa;
 
 import fr.cesi.commerce.dao.CollaborateurDao;
+import fr.cesi.commerce.dao.ProjetDao;
 import fr.cesi.commerce.dao.ReunionDao;
 import fr.cesi.commerce.dao.RoleDao;
 import fr.cesi.commerce.dao.TacheDao;
@@ -25,6 +26,10 @@ public class DaoFactory {
 	
 	public static TacheDao getTacheDao() {
 		return new JpaTacheDao(PersistenceManager.getEntityManagerFactory());
+	}
+	
+	public static ProjetDao getProjetDao() {
+		return new JpaProjetDao(PersistenceManager.getEntityManagerFactory());
 	}
 
 }
