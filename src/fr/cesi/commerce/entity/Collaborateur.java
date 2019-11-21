@@ -11,19 +11,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="commentaires")
+@Table(name="collaborateur")
 public class Collaborateur {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id  ;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employe_id", referencedColumnName = "id")
-	private Projet projet ;
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_role", referencedColumnName = "id")
+	private Role role ;
 	
-	private String titre = "" ;
-	private String description = "" ;
-	
+	private String nom = "" ;
+	private String prenom = "" ;
+	private String mail = "" ;
+	private String pwd = "" ;
 
 	public Collaborateur() {	
 	}
@@ -39,33 +40,51 @@ public class Collaborateur {
 	}
 
 
-	public Projet getProjet() {
-		return projet;
+	public Role retRole() {
+		return role;
 	}
 
 
-	public void setProjet(Projet projet) {
-		this.projet = projet;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 
-	public String getTitre() {
-		return titre;
+	public String getNom() {
+		return nom;
 	}
 
 
-	public void setTitre(String titre) {
-		this.titre = titre;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 
-	public String getDescription() {
-		return description;
+	public String getPrenom() {
+		return prenom;
 	}
 
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	
