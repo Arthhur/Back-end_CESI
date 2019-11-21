@@ -26,7 +26,7 @@ public class ReunionRessource {
 	}
 	
 	@GET 
-	@Path("/search/{id}")
+	@Path("/reunion/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Reunion getReunionInJson(@PathParam("id") Long comId) {
 		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
