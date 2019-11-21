@@ -38,12 +38,5 @@ public class Projet {
 		this.libelle = libelle;
 	}
 
-	public Reunion getReunion() {
-		return reunion;
-	}
-
-	public void setReunion(Reunion reunion) {
-		this.reunion = reunion;
-	}
 
 }
