@@ -1,0 +1,16 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+	margin : 15px ;
+}
+
+button {
+	margin-top: 10px ;
+}
