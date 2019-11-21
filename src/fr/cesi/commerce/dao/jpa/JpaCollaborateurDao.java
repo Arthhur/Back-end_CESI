@@ -71,5 +71,13 @@ public class JpaCollaborateurDao implements CollaborateurDao{
 			em.close();
 		}
 	}
+	public Collaborateur getCollaborateur(String mail, String pwd){
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		Query query = em.createQuery("FROM Collaborateur C WHERE C.mail = ?1 and C.pwd = ?2");
+		query.setParameter(1, mail) ;
+		query.setParameter(2, pwd) ;
+		return (Collaborateur)query.getSingleResult() ;
+	}
 
 }
