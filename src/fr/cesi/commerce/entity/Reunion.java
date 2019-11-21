@@ -91,16 +91,6 @@ public class Reunion {
 	}
 
 
-	public Projet getProjet() {
-		return projet;
-	}
-
-
-	public void setProjet(Projet projet) {
-		this.projet = projet;
-	}
-
-
 	public List<Collaborateur> getParticipant() {
 		return participant;
 	}
