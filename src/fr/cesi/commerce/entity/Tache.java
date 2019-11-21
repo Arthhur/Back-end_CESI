@@ -1,5 +1,7 @@
 package fr.cesi.commerce.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +24,7 @@ public class Tache {
 	private Reunion reunion ;
 	
 	private String libelle = "" ;
-	private Date echeance = "" ;
+	private Date echeance = new Date() ;
 	
 
 	public Tache() {	
@@ -39,7 +41,7 @@ public class Tache {
 	}
 
 
-	public Projet getReunion() {
+	public Reunion getReunion() {
 		return reunion;
 	}
 
@@ -49,7 +51,17 @@ public class Tache {
 	}
 
 
-	public String getEcheance() {
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+
+	public Date getEcheance() {
 		return echeance;
 	}
 
@@ -57,6 +69,9 @@ public class Tache {
 	public void setEcheance(Date echeance) {
 		this.echeance = echeance;
 	}
+	
+	
+
 
 
 
