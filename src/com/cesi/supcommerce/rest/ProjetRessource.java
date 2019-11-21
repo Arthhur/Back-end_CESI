@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaProjetDao;
 import fr.cesi.commerce.entity.Projet;
-import fr.cesi.commerce.entity.Service;
 
 @Path("/projets") 
 public class ProjetRessource {
