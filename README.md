@@ -8,4 +8,5 @@ L’ouvrir sous Eclipse en tant que projet.
 Configurer le persistence.xml
 Créer la base de données (vide)
 Lancer Tomcat (Qui va créer les tables + relations)
+Importer ficher .sql dans la base de données
 Brancher le front sur l’API
