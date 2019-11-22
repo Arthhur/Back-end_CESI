@@ -77,27 +77,7 @@ public class JpaCollaborateurDao implements CollaborateurDao{
 		Query query = em.createQuery("FROM Collaborateur C WHERE C.mail = ?1 and C.pwd = ?2");
 		query.setParameter(1, mail) ;
 		query.setParameter(2, pwd) ;
-		return (Collaborateur)query.getSingleResult() ;
-	}
-	
-
-	public List<Object> getTest(String mail, String pwd){
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		Query query = em.createNativeQuery("SELECT CONCAT(nom, ' ', prenom), mail FROM Collaborateur C WHERE C.mail = ?1 and C.pwd = ?2 ");
-		query.setParameter(1, mail) ;
-		query.setParameter(2, pwd) ;
-		List<String> results = query.getResultList();
-		Iterator itr = results.iterator;
-		String colab = "" ;
-		while(itr.hasNext()){
-			Object[] obj = (Object[]) itr.next();
-			System.out.println(obj);
-			String collab = String.valueOf(obj[0]);
-		 }
-	    if (results.isEmpty()) 
-	    	return null;
-		return collab ;
+		return query.getResultList().size() == 0 ?  null : (Collaborateur)query.getResultList().get(0);
 	}
 
 }

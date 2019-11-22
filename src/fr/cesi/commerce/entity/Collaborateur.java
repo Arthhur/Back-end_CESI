@@ -1,6 +1,7 @@
 package fr.cesi.commerce.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,9 @@ import javax.persistence.Table;
 @Table(name="collaborateur")
 public class Collaborateur {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
+
 	private Long id  ;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -42,7 +45,7 @@ public class Collaborateur {
 	}
 
 
-	public Role retRole() {
+	public Role getRole() {
 		return role;
 	}
 

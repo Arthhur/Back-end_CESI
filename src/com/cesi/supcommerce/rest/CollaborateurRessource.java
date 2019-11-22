@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
@@ -22,27 +24,24 @@ public class CollaborateurRessource {
 		
 	@GET 
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Collaborateur> getAllCollaborateursInJson() {
+	public JSONArray getAllCollaborateursInJson() {
+		JSONArray array =  new JSONArray();
+		
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
-		return colDao.getAllCollaborateurs() ;
-	}
-	
-	@GET 
-	@Path("/test")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getInJson(String incomingData) {
-		String mail = "" ;
-		String password = "" ;
-		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
+		List<Collaborateur> collaborateurs = colDao.getAllCollaborateurs() ;
 		try {
-            JSONObject obj = new JSONObject(incomingData);
-            mail = obj.getString("mail");
-            password = obj.getString("password");
-        } catch (Exception e) {
-        	System.out.println(e) ;
-        	return null ;
-        }
-		return colDao.getTest(mail, password) ;
+			for(Collaborateur col : collaborateurs) {
+				JSONObject JsonColl = new JSONObject();
+				JsonColl.put("id", col.getId());
+				JsonColl.put("name", col.getNom()+" "+ col.getPrenom());
+				JsonColl.put("job", col.getRole().getLibelle());
+				array.put(JsonColl);
+			}			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array ;
 	}
 	
 	@GET 

@@ -3,6 +3,7 @@ package fr.cesi.commerce.entity;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,9 @@ import javax.persistence.Table;
 @Table(name="role")
 public class Role {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
+
 	private Long id  ;
 	private String libelle ;
 	

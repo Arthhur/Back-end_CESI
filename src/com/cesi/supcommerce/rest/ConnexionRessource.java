@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
@@ -23,9 +24,10 @@ public class ConnexionRessource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Collaborateur getConnexion(String incomingData) {
+	public JSONObject getConnexion(String incomingData) {
 		String mail = "" ;
 		String password = "" ;
+		JSONObject json =  new JSONObject();
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		try {
             JSONObject obj = new JSONObject(incomingData);
@@ -35,12 +37,19 @@ public class ConnexionRessource {
         	System.out.println(e) ;
         	return null ;
         }
-		if (colDao.getCollaborateur(mail, password) == null){
-			return null ;
+		Collaborateur col = (Collaborateur)colDao.getCollaborateur(mail, password) ;
+		if(col != null) {
+			try {
+				json.put("id", col.getId());
+				json.put("name", col.getNom()+" "+ col.getPrenom());
+				json.put("job", col.getRole().getLibelle());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return json ;
 		}
-		else {
-			return colDao.getCollaborateur(mail, password) ;
-		}
+		return null ;
+		
 	}
-	
 }
