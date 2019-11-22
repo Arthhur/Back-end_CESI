@@ -42,6 +42,10 @@ public class Reunion {
 	@JoinColumn(name = "id_projet", referencedColumnName = "id")
 	private Projet projet ;
 
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_collaborateur", referencedColumnName = "id")
+	private List<Collaborateur> collaborateurs;
+
 	public Reunion() {	
 	}
 
