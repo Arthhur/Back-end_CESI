@@ -101,10 +101,38 @@ public class CollaborateurRessource {
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean editCollaborateur(@PathParam("id") Long comId, Collaborateur c) {
+	public boolean editCollaborateur(@PathParam("id") Long comId, String incomingData) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
-		colDao.editCollaborateur(c);
-		return true ;
+		JpaRoleDao roleDao = (JpaRoleDao)DaoFactory.getRoleDao() ;
+		String nom = "";
+		String prenom = "";
+		String mail = "";
+		String password = "";
+		Long id_role = 0L;
+		Long id = 0L ;
+		JSONObject json =  new JSONObject();		
+		try {
+			JSONObject obj = new JSONObject(incomingData);
+			id = Long.parseLong(obj.getString("id")) ;
+			nom = obj.getString("nom");
+            prenom = obj.getString("prenom");
+            mail = obj.getString("mail");
+            password =  obj.getString("password");
+			id_role = Long.parseLong(obj.getString("role"));
+			Role r = roleDao.findRoleById(id_role);
+			Collaborateur c = colDao.findCollaborateurById(id) ;
+			c.setNom(nom);
+			c.setPrenom(prenom);
+			c.setMail(mail);
+			c.setPwd(password);
+			c.setRole(r);
+			colDao.editCollaborateur(c);
+			return true ;
+		} catch (Exception e) {
+			//TODO: handle exception
+			System.out.println(e);
+			return false ;
+		}
 	}
 	
 }

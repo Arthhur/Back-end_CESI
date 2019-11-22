@@ -31,7 +31,7 @@ public class Reunion {
 	private String lieu ;
 	private String objectif ;
 	private String compteRendu ;
-	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_createur", referencedColumnName = "id")
 	private Collaborateur createur ;
 	@ManyToMany(cascade = CascadeType.REMOVE)

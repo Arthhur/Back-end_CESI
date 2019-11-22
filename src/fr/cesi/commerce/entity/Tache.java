@@ -21,7 +21,7 @@ public class Tache {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id  ;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_reunion", referencedColumnName = "id")
 	private Reunion reunion ;
 	

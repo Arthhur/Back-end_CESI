@@ -22,7 +22,7 @@ public class Collaborateur {
 
 	private Long id  ;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
 	private Role role ;
 	

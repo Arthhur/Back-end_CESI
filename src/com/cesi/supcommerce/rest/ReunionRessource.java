@@ -109,7 +109,7 @@ public class ReunionRessource {
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Reunion editReunion(@PathParam("id") Long comId, String incomingData) {
+	public boolean editReunion(@PathParam("id") Long comId, String incomingData) {
 		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
@@ -149,10 +149,10 @@ public class ReunionRessource {
             r.setParticipant(collaborateurs);
             
             reunionDao.editReunion(r) ;
-            return r ;
+            return true ;
         } catch (Exception e) {
         	System.out.println(e) ;
-        	return null;
+        	return false;
         }
 	}
 	
