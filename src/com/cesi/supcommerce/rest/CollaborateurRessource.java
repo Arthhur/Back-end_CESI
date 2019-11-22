@@ -64,9 +64,36 @@ public class CollaborateurRessource {
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addCollaborateur(Collaborateur c) {
+	public void addCollaborateur(String incomingData) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
-		colDao.addCollaborateur(c) ;
+		JpaRoleDao roleDao = (JpaRoleDao)DaoFactory.getRoleDao() ;
+		String nom = "";
+		String prenom = "";
+		String mail = "";
+		String password = "";
+		Long role = 0L;
+		JSONObject json =  new JSONObject();		
+		try {
+			JSONObject obj = new JSONObject(incomingData);
+			nom =obj.getString("nom");
+            prenom = obj.getString("prenom");
+            mail = obj.getString("mail");
+            password =  obj.getString("mail");
+			id_role = Long.parseLong(obj.getString("role"));
+			Role r = roleDao.findRoleById(id_role);
+			Collaborateur c = new Collaborateur();
+			c.setNom(nom);
+			c.setPrenom(prenom);
+			c.setMail(mail);
+			c.setPwd(password);
+			c.setRole(r);
+			colDao.addCollaborateur(c);
+			System.out.println("Collaborateur ajouté !");
+		} catch (Exception e) {
+			//TODO: handle exception
+			System.out.println("Echec ajout collaborateur !");
+			System.out.println(e);
+		}
 	}
 	
 	@PUT
