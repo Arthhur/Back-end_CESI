@@ -25,7 +25,7 @@ public class Reunion {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id  ;
-	private Date date ;
+	private String date ;
 	private String lieu ;
 	private String objectif ;
 	private String compteRendu ;
@@ -56,12 +56,12 @@ public class Reunion {
 	}
 
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
