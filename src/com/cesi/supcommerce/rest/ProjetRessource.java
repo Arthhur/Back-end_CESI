@@ -45,9 +45,23 @@ public class ProjetRessource {
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addProjet(Projet p) {
+	public void addProjet(String incomingData) {
 		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
-		projetDao.addProjet(p) ;
+		
+		String libelle = "";
+		JSONObject json =  new JSONObject();		
+		try {
+			JSONObject obj = new JSONObject(incomingData);
+			Projet c = new Projet();
+			c.setLibelle(obj.get("libelle"));
+			projetDao.addProjet(c);
+			System.out.println("Projet ajouté ! ")
+		} catch (Exception e) {
+			//TODO: handle exception
+			System.out.println("Erreur ajout projet ! ")
+			System.out.println(e);
+		}		
+		
 	}
 	
 	@PUT
