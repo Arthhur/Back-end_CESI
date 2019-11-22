@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name="reunion")
 public class Reunion {
@@ -29,10 +31,10 @@ public class Reunion {
 	private String lieu ;
 	private String objectif ;
 	private String compteRendu ;
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_createur", referencedColumnName = "id")
 	private Collaborateur createur ;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(
 			  name = "participer", 
 			  joinColumns = @JoinColumn(name = "reunion_id"), 
@@ -41,10 +43,6 @@ public class Reunion {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_projet", referencedColumnName = "id")
 	private Projet projet ;
-
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_collaborateur", referencedColumnName = "id")
-	private List<Collaborateur> collaborateurs;
 
 	public Reunion() {	
 	}

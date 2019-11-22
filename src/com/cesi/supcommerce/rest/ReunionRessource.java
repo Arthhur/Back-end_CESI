@@ -1,8 +1,7 @@
 package com.cesi.supcommerce.rest;
 
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
@@ -62,25 +62,32 @@ public class ReunionRessource {
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Reunion addReunion(String incomingData) {
+	public boolean addReunion(String incomingData) {
 		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
 		String date = "" ;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss"); //  04/02/2011 20:27:05
 		String lieu = "" ;
 		String objectif = "" ;
 		Long id_createur = 0L ;
 		Long id_projet = 0L ;
-		JSONObject json =  new JSONObject();		
+		List<Collaborateur> collaborateurs = new ArrayList<Collaborateur>() ;
+		JSONArray idCollab = new JSONArray() ;
 		try {
             JSONObject obj = new JSONObject(incomingData);
             
-            date =obj.getString("date");
+            date = obj.getString("date");
             lieu = obj.getString("lieu");
             objectif = obj.getString("objectif");
             id_createur = Long.parseLong(obj.getString("id_createur"));
             id_projet = Long.parseLong(obj.getString("projet"));
+            idCollab = obj.getJSONArray("collaborateurs") ;
+            for (int i = 0; i < idCollab.length(); i++) {
+            	Long id = Long.parseLong((String) idCollab.get(i)) ;
+                Collaborateur c = colDao.findCollaborateurById(id);
+                collaborateurs.add(c) ;
+            }
+            
             Reunion r = new Reunion() ;
             r.setDate(date);
             r.setLieu(lieu);
@@ -89,21 +96,64 @@ public class ReunionRessource {
             r.setCreateur(c);
             Projet p = projetDao.findProjetById(id_projet) ;
             r.setProjet(p);
+            r.setParticipant(collaborateurs);
             
             reunionDao.addReunion(r) ;
-            return r ;
+            return true ;
         } catch (Exception e) {
         	System.out.println(e) ;
-        	return null ;
+        	return false ;
         }
 	}
 	
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void editReunion(@PathParam("id") Long comId, Reunion r) {
+	public Reunion editReunion(@PathParam("id") Long comId, String incomingData) {
 		JpaReunionDao reunionDao = (JpaReunionDao)DaoFactory.getReunionDao() ;
-		reunionDao.editReunion(r);
+		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
+		JpaProjetDao projetDao = (JpaProjetDao)DaoFactory.getProjetDao() ;
+		String date = "" ;
+		String lieu = "" ;
+		String objectif = "" ;
+		Long id_reunion = 0L ;
+		Long id_createur = 0L ;
+		Long id_projet = 0L ;
+		Reunion r = new Reunion() ;
+		List<Collaborateur> collaborateurs = new ArrayList<Collaborateur>() ;
+		JSONArray idCollab = new JSONArray() ;
+		try {
+            JSONObject obj = new JSONObject(incomingData);
+            id_reunion = Long.parseLong(obj.getString("id")) ;
+            date = obj.getString("date");
+            lieu = obj.getString("lieu");
+            objectif = obj.getString("objectif");
+            id_createur = Long.parseLong(obj.getString("id_createur"));
+            id_projet = Long.parseLong(obj.getString("projet"));
+            idCollab = obj.getJSONArray("collaborateurs") ;
+            for (int i = 0; i < idCollab.length(); i++) {
+            	Long id = Long.parseLong((String) idCollab.get(i)) ;
+                Collaborateur c = colDao.findCollaborateurById(id);
+                collaborateurs.add(c) ;
+            }
+            
+            r = reunionDao.findReunionById(id_reunion) ;
+            
+            r.setDate(date);
+            r.setLieu(lieu);
+            r.setObjectif(objectif);
+            Collaborateur c = colDao.findCollaborateurById(id_createur) ;
+            r.setCreateur(c);
+            Projet p = projetDao.findProjetById(id_projet) ;
+            r.setProjet(p);
+            r.setParticipant(collaborateurs);
+            
+            reunionDao.editReunion(r) ;
+            return r ;
+        } catch (Exception e) {
+        	System.out.println(e) ;
+        	return null;
+        }
 	}
 	
 }

@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONObject;
+
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaProjetDao;
 import fr.cesi.commerce.entity.Projet;
@@ -53,12 +55,11 @@ public class ProjetRessource {
 		try {
 			JSONObject obj = new JSONObject(incomingData);
 			Projet c = new Projet();
-			c.setLibelle(obj.get("libelle"));
+			c.setLibelle(obj.getString("libelle"));
 			projetDao.addProjet(c);
-			System.out.println("Projet ajouté ! ")
 		} catch (Exception e) {
 			//TODO: handle exception
-			System.out.println("Erreur ajout projet ! ")
+			System.out.println("Erreur ajout projet ! ") ;
 			System.out.println(e);
 		}		
 		

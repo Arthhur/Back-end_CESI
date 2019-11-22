@@ -17,7 +17,9 @@ import org.codehaus.jettison.json.JSONObject;
 
 import fr.cesi.commerce.dao.jpa.DaoFactory;
 import fr.cesi.commerce.dao.jpa.JpaCollaborateurDao;
+import fr.cesi.commerce.dao.jpa.JpaRoleDao;
 import fr.cesi.commerce.entity.Collaborateur;
+import fr.cesi.commerce.entity.Role;
 
 @Path("/collaborateurs") 
 public class CollaborateurRessource {
@@ -64,21 +66,21 @@ public class CollaborateurRessource {
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addCollaborateur(String incomingData) {
+	public boolean addCollaborateur(String incomingData) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		JpaRoleDao roleDao = (JpaRoleDao)DaoFactory.getRoleDao() ;
 		String nom = "";
 		String prenom = "";
 		String mail = "";
 		String password = "";
-		Long role = 0L;
+		Long id_role = 0L;
 		JSONObject json =  new JSONObject();		
 		try {
 			JSONObject obj = new JSONObject(incomingData);
 			nom =obj.getString("nom");
             prenom = obj.getString("prenom");
             mail = obj.getString("mail");
-            password =  obj.getString("mail");
+            password =  obj.getString("password");
 			id_role = Long.parseLong(obj.getString("role"));
 			Role r = roleDao.findRoleById(id_role);
 			Collaborateur c = new Collaborateur();
@@ -88,20 +90,21 @@ public class CollaborateurRessource {
 			c.setPwd(password);
 			c.setRole(r);
 			colDao.addCollaborateur(c);
-			System.out.println("Collaborateur ajouté !");
+			return true ;
 		} catch (Exception e) {
 			//TODO: handle exception
-			System.out.println("Echec ajout collaborateur !");
 			System.out.println(e);
+			return false ;
 		}
 	}
 	
 	@PUT
 	@Path("/edit/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void editCollaborateur(@PathParam("id") Long comId, Collaborateur c) {
+	public boolean editCollaborateur(@PathParam("id") Long comId, Collaborateur c) {
 		JpaCollaborateurDao colDao = (JpaCollaborateurDao)DaoFactory.getCollaborateurDao() ;
 		colDao.editCollaborateur(c);
+		return true ;
 	}
 	
 }

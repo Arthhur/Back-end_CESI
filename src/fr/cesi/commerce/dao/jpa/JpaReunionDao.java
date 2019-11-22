@@ -74,7 +74,7 @@ public class JpaReunionDao implements ReunionDao{
 	public List<Reunion> findReunionByProjet(Long pId) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction t = em.getTransaction();
-		Query query = em.createQuery("FROM Reunion R WHERE R.projet = ?1");
+		Query query = em.createQuery("FROM Reunion R WHERE R.projet.id = ?1");
 		query.setParameter(1, pId) ;
 		return (List<Reunion>)query.getResultList();
 	}
